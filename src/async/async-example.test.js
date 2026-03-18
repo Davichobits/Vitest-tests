@@ -16,3 +16,20 @@ describe('generateToken', ()=>{
     })
   });
 });
+
+describe('generateTokenPromise', ()=>{
+
+  // option 1
+  it('should generate a token value', ()=>{
+    const userEmail = 'example@example.com'
+    expect(generateTokenPromise(userEmail)).resolves.toBeDefined();
+  });
+
+  // option 2
+  it('should generate a token value', async ()=>{
+    const userEmail = 'example@example.com'
+    const token = generateTokenPromise(userEmail);
+    expect(token).toBeDefined();
+  });
+
+});
