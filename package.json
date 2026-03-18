@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  },
   "devDependencies": {
     "http-server": "^14.1.0",
     "install": "^0.13.0",
