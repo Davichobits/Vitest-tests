@@ -22,7 +22,7 @@ describe('generateTokenPromise', ()=>{
   // option 1
   it('should generate a token value', ()=>{
     const userEmail = 'example@example.com'
-    expect(generateTokenPromise(userEmail)).resolves.toBeDefined();
+    return expect(generateTokenPromise(userEmail)).resolves.toBeDefined();
   });
 
   // option 2
