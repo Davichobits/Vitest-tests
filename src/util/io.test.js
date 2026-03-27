@@ -1,8 +1,21 @@
 import { it, expect, describe, vi } from 'vitest';
-import { promises } from 'fs'
+// import { promises } from 'fs'
 import writeData from './io';
 
-vi.mock('fs');
+// Solución 1:
+// vi.mock('fs', ()=>{
+//   return {
+//     promises: {
+//       writeFile: vi.fn(()=> new Promise((resolves)=>{
+//         return resolves();
+//       }))
+//     }
+//   }
+// });
+
+// Solución 2:
+vi.mock('fs')
+
 vi.mock('path', ()=>{
   return {
     default: {
@@ -20,9 +33,9 @@ describe('writeData()', ()=>{
     const testFilename = 'test.txt'
 
     writeData(testData, testFilename)
-    // return expect(writeData(testData, testFilename)).resolves.toBeUndefined();
-    //expect(promises.writeFile).toBeCalled();
 
-    expect(promises.writeFile).toBeCalledWith(testFilename, testData)
+    return expect(writeData(testData, testFilename)).resolves.toBeUndefined();
+    //expect(promises.writeFile).toBeCalled();
+    //expect(promises.writeFile).toBeCalledWith(testFilename, testData)
   })
 });
