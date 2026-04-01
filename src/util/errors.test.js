@@ -6,7 +6,7 @@ let validationError
 
 beforeEach(()=>{
   httpError = new HttpError(404, 'Not found', {resourse: 'user'})
-  validationError = new ValidationError('User not found')
+  
 })
 
 describe('HttpError class', ()=>{
@@ -22,10 +22,21 @@ describe('HttpError class', ()=>{
     expect(httpError.message).toBe('Not found');
     expect(httpError.data).toEqual({resourse:'user'})
   })
+
+  it('should contain undefined as data if no data is provided', ()=>{
+    httpError = new HttpError(404, 'Not found')
+    expect(httpError.data).toBeUndefined()
+  })
+
 })
 
 describe('ValidationError Class', ()=>{
-  it('should have a message property', ()=>{
-    expect(validationError.message).toBe('User not found')
+  it('should have a message provided', ()=>{
+
+    const testMessage = 'User not found'
+    
+    validationError = new ValidationError(testMessage)
+
+    expect(validationError.message).toBe(testMessage)
   })
 })
