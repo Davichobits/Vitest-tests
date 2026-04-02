@@ -3,8 +3,13 @@ import { sendDataRequest } from './http';
 
 const testResponseData = {testKey: 'testData'}
 
-const testFetch = vi.fn(()=>{
+const testFetch = vi.fn((url, options)=>{
   return new Promise((resolve, reject)=>{
+
+    if(typeof options.body !== 'string'){
+      reject('Body is not a string')
+    }
+
     const testResponse = {
       ok: true,
       json: () => new Promise((resolve, reject)=>{
@@ -29,4 +34,17 @@ it('Shloud return any available response data', ()=>{
   const data = {message: 'ok'};
 
   return expect(sendDataRequest(data)).resolves.toEqual(testResponseData);
+})
+
+it('should convert the provided data to JSON before sending the requiest', async ()=>{
+  const testData = {key: 'test'};
+  let errorMessage;
+
+  try{
+    await sendDataRequest(testData)
+  } catch(error){
+    errorMessage = error
+  }
+
+  expect(errorMessage).not.toBe('Body is not a string');
 })
