@@ -1,5 +1,5 @@
 import { sendDataRequest } from '../util/http.js';
-import { validateNotEmpty } from '../util/validation.js';
+import { validateNotEmpty } from '../util/validation_no_empty.js';
 
 export function savePost(postData) {
   postData.created = new Date();
