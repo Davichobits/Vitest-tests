@@ -4,19 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "vitest --run --reporter verbose",
-    "test:watch": "vitest",
+    "test": "vitest --run --reporter verbose --environment happy-dom",
+    "test:watch": "vitest --run --environment happy-dom",
     "start": "http-server -c-1"
   },
   "keywords": [],
   "author": "Maximilian Schwarzmüller",
   "license": "ISC",
   "dependencies": {
+    "http-server": "^14.1.0",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "http-server": "^14.1.0",
+    "happy-dom": "^2.55.0",
     "install": "^0.13.0",
+    "jsdom": "^29.0.1",
     "npm": "^8.6.0",
     "vitest": "^0.9.0"
   }
